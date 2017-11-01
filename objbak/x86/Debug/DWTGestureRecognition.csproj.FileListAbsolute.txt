@@ -1,0 +1,16 @@
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\bin\Debug\DWTGestureRecognition.exe
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\bin\Debug\DWTGestureRecognition.pdb
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\bin\Debug\Coding4Fun.Kinect.Wpf.dll
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\bin\Debug\Microsoft.Expression.Drawing.dll
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\bin\Debug\Coding4Fun.Kinect.Wpf.pdb
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\MainWindow.baml
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\MainWindow.g.cs
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\App.g.cs
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\DWTGestureRecognition_MarkupCompile.cache
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\DWTGestureRecognition.g.resources
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\DWTGestureRecognition.Properties.Resources.resources
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\DWTGestureRecognition.exe
+H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DWTGestureRecognition\DWTGestureRecognition\obj\x86\Debug\DWTGestureRecognition.pdb

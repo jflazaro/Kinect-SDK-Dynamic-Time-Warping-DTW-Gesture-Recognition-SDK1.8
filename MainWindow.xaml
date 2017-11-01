@@ -1,0 +1,78 @@
+﻿<Window x:Class="DTWGestureRecognition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KinectDTW" Height="674" Width="620" Loaded="WindowLoaded" Closed="WindowClosed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="140" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="250" />
+            <RowDefinition Height="16" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Image Source="/DTWGestureRecognition;component/HeaderBG.png" />
+            <Label Height="40" Content="Kinect SDK Dynamic Time Warping (DTW) Gesture Recognition" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" FontStretch="SemiExpanded" FontStyle="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Segoe UI"></Label>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Button Name="dtwRead" Content="Read" Click="DtwReadClick" Width="200" IsEnabled="False" />
+            <Button Name="dtwCapture" Content="Capture" Click="DtwCaptureClick" Width="200 "/>
+            <Button Name="dtwStore" Content="Store" IsEnabled="False" Click="DtwStoreClick" Width="200" />
+            <Button Name="dtwLoadFile" Content="Load gesture file" IsEnabled="True" Click="DtwLoadFile" Width="200" />
+            <Button Name="dtwSaveToFile" Content="Save to file" IsEnabled="True" Click="DtwSaveToFile" Width="200" />
+            <Button Name="dtwShowGestureTest" Content="Show Gesture Text" IsEnabled="True" Click="DtwShowGestureText" Width="200" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+            <ComboBox Name="gestureList" Width="400">
+                <ComboBoxItem IsSelected="True">@Right hand swipe left</ComboBoxItem>
+                <ComboBoxItem>@Right hand swipe right</ComboBoxItem>
+                <ComboBoxItem>@Left hand swipe left</ComboBoxItem>
+                <ComboBoxItem>@Left hand swipe right</ComboBoxItem>
+                <ComboBoxItem>@Two hands zoom in</ComboBoxItem>
+                <ComboBoxItem>@Two hands zoom out</ComboBoxItem>
+                <ComboBoxItem>@Right hand wave</ComboBoxItem>
+                <ComboBoxItem>@Left hand wave</ComboBoxItem>
+                <ComboBoxItem>@Right hand pull down</ComboBoxItem>
+                <ComboBoxItem>@Left hand pull down</ComboBoxItem>
+                <ComboBoxItem>@Right hand push up</ComboBoxItem>
+                <ComboBoxItem>@Left hand push up</ComboBoxItem>
+                <ComboBoxItem>@Both hands pull down</ComboBoxItem>
+                <ComboBoxItem>@Both hands push up</ComboBoxItem>
+                <ComboBoxItem>@Get on down at the disco!</ComboBoxItem>
+            </ComboBox>
+            <TextBox FontSize="14" Name="results" Margin="0,0,0,0" Focusable="False" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" />
+            <TextBox FontSize="14" Name="status" Margin="0,0,0,0" Focusable="False" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" />
+            <TextBox FontSize="14" Name="currentBufferFrame" Margin="0,0,0,0" Focusable="False" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" />
+            <TextBox FontSize="14" Name="frameRate" Margin="0,0,0,0" Focusable="False" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="20" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <Image Width="200" Height="150" x:Name="videoImage" Margin="0,0,0,0" />
+            <Canvas Width="200" Height="150" x:Name="skeletonCanvas" Background="Black" ClipToBounds="True" Margin="0,0,0,0" />
+            <Image Width="200" Height="150" x:Name="depthImage" Margin="0,0,0,0" />
+        </StackPanel>
+        <TextBox Grid.Column="0" Grid.Row="3" FontSize="11" Name="dtwTextOutput" Margin="0,0,0,0" Focusable="True" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="230" VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
+        <TextBlock Grid.Column="1" Grid.Row="3" FontSize="11" Name="helpText" Margin="0,0,0,0" Focusable="True" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="230" Padding="10" TextWrapping="WrapWithOverflow">
+1. To start, step into frame and allow Kinect to track your skeleton<LineBreak/>
+2. Select a gesture you wish to record from the ComboBox<LineBreak/>
+3. Perform a gesture over 32 frames - watch the frame counter above<LineBreak/>
+4. Your gesture will be stored automatically and return to read mode<LineBreak/>
+5. Test your gesture. If you're unhappy, record the gesture again to overwrite<LineBreak/>
+6. Record some other gestures and test them<LineBreak/>
+7. Optionally save your gestures to file for future loading<LineBreak/>
+8. Improve this script, add your own gestures, share and enjoy Kinect!
+        </TextBlock>
+        <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="By Rhemyst and Rymix - kinectdtw.codeplex.com" Foreground="White" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Height="16" FontSize="10" Padding="0">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF4D35AB" Offset="1" />
+                    <GradientStop Color="#FF724798" Offset="0.498" />
+                    <GradientStop Color="#FF2B9E32" Offset="0" />
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+    </Grid>
+</Window>
