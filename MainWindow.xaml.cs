@@ -427,7 +427,7 @@ namespace DTWGestureRecognition
             float depthX, depthY;
             //_nui.SkeletonStream.SkeletonToDepthImage(joint.Position, out depthX, out depthY);
             //DepthImagePoint dip = _nui.MapSkeletonPointToDepth(joint.Position, DepthImageFormat.Resolution320x240Fps30);
-            DepthImagePoint dip = _coordinatemapper.MapSkeletonPointToDepthPoint(joint.Position, DepthImageFormat.Resolution320x240Fps30);
+            DepthImagePoint dip = _coordinatemapper.MapSkeletonPointToDepthPoint(joint.Position, DepthImageFormat.Resolution640x480Fps30);
             depthX = dip.X;
             depthY = dip.Y;
             //depthX = Math.Max(0, Math.Min(depthX * 320, 320)); // convert to 320, 240 space
@@ -441,7 +441,7 @@ namespace DTWGestureRecognition
 
             // Map back to skeleton.Width & skeleton.Height
             //return new Point((int)(skeletonCanvas.Width * colorX / 640.0), (int)(skeletonCanvas.Height * colorY / 480));
-            ColorImagePoint p =_coordinatemapper.MapDepthPointToColorPoint(DepthImageFormat.Resolution320x240Fps30,dip,ColorImageFormat.RgbResolution640x480Fps30);
+            ColorImagePoint p =_coordinatemapper.MapDepthPointToColorPoint(DepthImageFormat.Resolution640x480Fps30,dip,ColorImageFormat.RgbResolution640x480Fps30);
             return new Point(p.X, p.Y);
         }
 
@@ -588,7 +588,7 @@ namespace DTWGestureRecognition
                 this.depthImage.Source = this.depthBitmap;
                 // If you want to see the depth image and frames per second then include this
                 // I'mma turn this off 'cos my 'puter is proper slow
-                //sensor.DepthFrameReady += NuiDepthFrameReady;
+                sensor.DepthFrameReady += NuiDepthFrameReady;
 
                 sensor.SkeletonStream.Enable();
                 sensor.SkeletonFrameReady += NuiSkeletonFrameReady;
