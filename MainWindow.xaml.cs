@@ -588,11 +588,11 @@ namespace DTWGestureRecognition
                 this.depthImage.Source = this.depthBitmap;
                 // If you want to see the depth image and frames per second then include this
                 // I'mma turn this off 'cos my 'puter is proper slow
-                sensor.DepthFrameReady += NuiDepthFrameReady;
+                // sensor.DepthFrameReady += NuiDepthFrameReady;
 
                 sensor.SkeletonStream.Enable();
-                sensor.SkeletonFrameReady += NuiSkeletonFrameReady;
-                sensor.SkeletonFrameReady += SkeletonExtractSkeletonFrameReady;
+                // sensor.SkeletonFrameReady += NuiSkeletonFrameReady;
+                // sensor.SkeletonFrameReady += SkeletonExtractSkeletonFrameReady;
 
                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                 try
