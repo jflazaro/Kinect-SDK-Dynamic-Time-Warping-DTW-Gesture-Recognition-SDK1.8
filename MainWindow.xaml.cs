@@ -77,7 +77,8 @@ namespace DTWGestureRecognition
         /// <summary>
         /// Where we will save our gestures to. The app will append a data/time and .txt to this string
         /// </summary>
-        private const string GestureSaveFileLocation = @"H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DTWGestureRecognition\DTWGestureRecognition\";
+        // private const string GestureSaveFileLocation = @"H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DTWGestureRecognition\DTWGestureRecognition\";
+        private const string GestureSaveFileLocation = @"C:\Users\joshu\Desktop\kinectdtw-1.0\trunk\DTWGestureRecognition";
 
         /// <summary>
         /// Where we will save our gestures to. The app will append a data/time and .txt to this string
@@ -561,7 +562,7 @@ namespace DTWGestureRecognition
             {
                 if (potentialSensor.Status == KinectStatus.Connected)
                 {
-                    sensor = potentialSensor;
+                    this.sensor = potentialSensor;
                     _coordinatemapper = new CoordinateMapper(potentialSensor);
                     break;
                 }
@@ -569,16 +570,16 @@ namespace DTWGestureRecognition
 
             if (null != this.sensor)
             {
-                sensor.ColorStream.Enable(ColorImageFormat.InfraredResolution640x480Fps30);
+                this.sensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
                 // Allocate space to put the pixels we'll receive
                 this.colorPixels = new byte[this.sensor.ColorStream.FramePixelDataLength];
                 // This is the bitmap we'll display on-screen
                 this.colorBitmap = new WriteableBitmap(this.sensor.ColorStream.FrameWidth, this.sensor.ColorStream.FrameHeight, 96.0, 96.0, PixelFormats.Bgr32, null);
                 this.videoImage.Source = this.colorBitmap;
                 // If you want to see the RGB stream then include this
-                //sensor.ColorFrameReady += NuiColorFrameReady;
+                this.sensor.ColorFrameReady += this.NuiColorFrameReady;
 
-                sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
+                this.sensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
                 // Allocate space to put the depth pixels we'll receive
                 this.depthPixels = new DepthImagePixel[this.sensor.DepthStream.FramePixelDataLength];
                 this.depthcolorPixels = new byte[this.sensor.DepthStream.FramePixelDataLength * sizeof(int)];
@@ -588,20 +589,20 @@ namespace DTWGestureRecognition
                 this.depthImage.Source = this.depthBitmap;
                 // If you want to see the depth image and frames per second then include this
                 // I'mma turn this off 'cos my 'puter is proper slow
-                // sensor.DepthFrameReady += NuiDepthFrameReady;
+                this.sensor.DepthFrameReady += this.NuiDepthFrameReady;
 
-                sensor.SkeletonStream.Enable();
-                // sensor.SkeletonFrameReady += NuiSkeletonFrameReady;
-                // sensor.SkeletonFrameReady += SkeletonExtractSkeletonFrameReady;
+                this.sensor.SkeletonStream.Enable();
+                // sensor.SkeletonFrameReady += this.NuiSkeletonFrameReady;
+                // sensor.SkeletonFrameReady += this.SkeletonExtractSkeletonFrameReady;
 
-                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                //Skeleton2DDataExtract.Skeleton2DdataCoordReady += this.NuiSkeleton2DdataCoordReady;
                 try
                 {
-                    sensor.Start();
+                    this.sensor.Start();
                 }
                 catch (IOException)
                 {
-                    sensor = null;
+                    this.sensor = null;
                 }
             }
 
@@ -649,10 +650,10 @@ namespace DTWGestureRecognition
         /// <param name="e">Event Args</param>
         private void WindowClosed(object sender, EventArgs e)
         {
-            if (null != sensor)
+            if (null != this.sensor)
             {
                 Debug.WriteLine("Stopping NUI");
-                sensor.Stop();
+                this.sensor.Stop();
                 Debug.WriteLine("NUI stopped");
             }
             Environment.Exit(0);
