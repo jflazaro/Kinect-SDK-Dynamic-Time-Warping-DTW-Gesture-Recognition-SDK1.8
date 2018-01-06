@@ -51,7 +51,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top">
             <Image Width="200" Height="150" x:Name="videoImage" Margin="0,0,0,0" />
-            <Canvas Width="200" Height="150" x:Name="skeletonCanvas" Background="Black" ClipToBounds="True" Margin="0,0,0,0" />
+            <Image Width="200" Height="150" x:Name="skeletonImage" ClipToBounds="True" Margin="0,0,0,0" />
             <Image Width="200" Height="150" x:Name="depthImage" Margin="0,0,0,0" />
         </StackPanel>
         <TextBox Grid.Column="0" Grid.Row="3" FontSize="11" Name="dtwTextOutput" Margin="0,0,0,0" Focusable="True" BorderThickness="0" Text="" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="230" VerticalScrollBarVisibility="Auto" IsReadOnly="True" />
