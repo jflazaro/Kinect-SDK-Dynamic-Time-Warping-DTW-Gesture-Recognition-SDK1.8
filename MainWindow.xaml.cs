@@ -19,14 +19,12 @@ namespace DTWGestureRecognition
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.Windows;
     using System.Windows.Forms;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
     using Microsoft.Kinect;
     
     /// <summary>
@@ -78,7 +76,7 @@ namespace DTWGestureRecognition
         /// Where we will save our gestures to. The app will append a data/time and .txt to this string
         /// </summary>
         // private const string GestureSaveFileLocation = @"H:\My Dropbox\Dropbox\Microsoft Kinect SDK Beta\DTWGestureRecognition\DTWGestureRecognition\";
-        private const string GestureSaveFileLocation = @"C:\Users\joshu\Desktop\kinectdtw-1.0\trunk\DTWGestureRecognition";
+        private const string GestureSaveFileLocation = @"C:\Users\joshu\Desktop\kinectdtw-1.0\trunk\DTWGestureRecognition\";
 
         /// <summary>
         /// Where we will save our gestures to. The app will append a data/time and .txt to this string
@@ -293,10 +291,17 @@ namespace DTWGestureRecognition
         private static void SkeletonExtractSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             SkeletonFrame skeletonFrame = e.OpenSkeletonFrame();
-            Skeleton[] skeleton_array = new Skeleton[skeletonFrame.SkeletonArrayLength];
-            foreach (Skeleton data in skeleton_array)
+            if (skeletonFrame != null)
             {
-                Skeleton2DDataExtract.ProcessData(data);
+                Skeleton[] skeleton_array = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                skeletonFrame.CopySkeletonDataTo(skeleton_array);
+                foreach (Skeleton data in skeleton_array)
+                {
+                    if (data != null)
+                    {
+                        Skeleton2DDataExtract.ProcessData(data);
+                    }
+                }
             }
         }
 
@@ -652,9 +657,8 @@ namespace DTWGestureRecognition
                 // Track Seated User (Change to SkeletonTrackingMode.Default if not seated)
                 this.sensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
                 this.sensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
-                // sensor.SkeletonFrameReady += this.SkeletonExtractSkeletonFrameReady;
-
-                //Skeleton2DDataExtract.Skeleton2DdataCoordReady += this.NuiSkeleton2DdataCoordReady;
+                this.sensor.SkeletonFrameReady += SkeletonExtractSkeletonFrameReady;
+                Skeleton2DDataExtract.Skeleton2DdataCoordReady += this.NuiSkeleton2DdataCoordReady;
                 try
                 {
                     this.sensor.Start();
